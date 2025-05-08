@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能餐饮管理系统</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 自定义一些基础样式，如果不用Tailwind可以扩展这里 */
+        body { font-family: 'Inter', sans-serif; margin: 0; background-color: #f4f4f9; color: #333; }
+        .container { max-width: 1200px; margin: 20px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1, h2 { color: #5a3e8d; } /* 主题色调 */
+        .button {
+            background-color: #7e57c2; /* 深紫色 */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover { background-color: #5e35b1; }
+        .button-secondary { background-color: #ab47bc; } /* 粉紫色 */
+        .button-secondary:hover { background-color: #8e24aa; }
+        .menu-item, .cart-item, .order-summary { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 5px; background-color: #fafafa; }
+        .menu-item img { max-width: 100px; max-height: 100px; border-radius: 4px; margin-right: 15px; }
+        .menu-item-info { display: flex; flex-direction: column; }
+        .menu-item-actions { margin-top: 10px; }
+        #llmSuggestion { margin-top:20px; padding: 15px; background-color:#eef; border-left: 4px solid #7e57c2; white-space: pre-wrap; }
+        .modal { /* 简单的模态框样式 */
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
+            overflow: auto; background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888;
+            width: 80%; max-width: 500px; border-radius: 8px; text-align: center;
+        }
+        .close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container mx-auto p-4">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-purple-700">智能餐厅点餐系统</h1>
+        </header>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <section class="md:col-span-2">
+                <h2 class="text-2xl font-semibold mb-4 text-purple-600">美味菜单</h2>
+                <div id="menuItems" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <p>正在加载菜单...</p>
+                </div>
+            </section>
+
+            <aside>
+                <h2 class="text-2xl font-semibold mb-4 text-purple-600">我的餐车</h2>
+                <div id="cartItems" class="mb-4">
+                    <p>餐车是空的。</p>
+                </div>
+                <div class="font-bold text-lg mb-4">总计: ¥<span id="cartTotal">0.00</span></div>
+                
+                <div class="mb-4">
+                    <label for="customerName" class="block text-sm font-medium text-gray-700">顾客姓名:</label>
+                    <input type="text" id="customerName" name="customerName" value="顾客" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm">
+                </div>
+
+                <button id="placeOrderBtn" class="button w-full mb-4">下单</button>
+                <button id="clearCartBtn" class="button button-secondary w-full">清空餐车</button>
+            </aside>
+        </div>
+
+        <section class="mt-8">
+            <h2 class="text-2xl font-semibold mb-4 text-purple-600">智能餐谱搭配建议</h2>
+            <div>
+                <label for="userPreferences" class="block text-sm font-medium text-gray-700">您的口味偏好 (可选):</label>
+                <input type="text" id="userPreferences" placeholder="例如: 不吃辣, 少油, 素食" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm mb-2">
+            </div>
+            <button id="getSuggestionBtn" class="button mb-2">获取建议</button>
+            <div id="llmSuggestion" class="bg-purple-50 p-4 rounded-md border border-purple-200 min-h-[100px]">
+                <p>请先选择一些菜品，然后点击“获取建议”按钮。</p>
+            </div>
+        </section>
+
+        <div id="messageModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal()">&times;</span>
+                <p id="modalMessageText"></p>
+                <button class="button mt-4" onclick="closeModal()">好的</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

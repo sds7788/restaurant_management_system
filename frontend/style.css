@@ -1,0 +1,222 @@
+/* frontend/style.css */
+/* 你可以在这里添加自定义样式，或者主要依赖Tailwind CSS (如HTML中引入) */
+
+body {
+    font-family: 'Inter', sans-serif; /* Fallback if Tailwind font is not applied or if not using Tailwind */
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5; /* 淡雅的背景色 */
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1, h2, h3 {
+    color: #4a0072; /* 深紫色，与Tailwind中的purple-700/800类似 */
+    margin-bottom: 0.75em;
+}
+
+h1 {
+    font-size: 2.5rem; /* 约等于 Tailwind text-4xl */
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.8rem; /* 约等于 Tailwind text-2xl */
+    border-bottom: 2px solid #e0cffc; /* 淡紫色下划线 */
+    padding-bottom: 0.3em;
+}
+
+.button {
+    display: inline-block;
+    background-color: #6d28d9; /* Tailwind purple-600 */
+    color: white;
+    padding: 0.65rem 1.25rem; /* 调整内边距 */
+    text-decoration: none;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600; /* semi-bold */
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.button:hover {
+    background-color: #5b21b6; /* Tailwind purple-700 */
+    transform: translateY(-1px);
+}
+.button:active {
+    transform: translateY(0px);
+}
+
+
+.button-secondary {
+    background-color: #9333ea; /* Tailwind purple-500 */
+}
+
+.button-secondary:hover {
+    background-color: #7e22ce; /* Tailwind purple-600 */
+}
+
+/* 菜单项 */
+.menu-item {
+    background-color: #f9fafb; /* Tailwind gray-50 */
+    border: 1px solid #e5e7eb; /* Tailwind gray-200 */
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.menu-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.menu-item img {
+    width: 100%;
+    height: 150px; /* 固定高度，让图片区域一致 */
+    object-fit: cover; /* 保持图片比例，裁剪多余部分 */
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+}
+
+.menu-item-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #374151; /* Tailwind gray-700 */
+}
+
+.menu-item-description {
+    font-size: 0.9rem;
+    color: #6b7280; /* Tailwind gray-500 */
+    flex-grow: 1; /* 让描述占据多余空间 */
+    margin: 0.5rem 0;
+}
+
+.menu-item-price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #7c3aed; /* Tailwind purple-500 */
+    margin-bottom: 0.5rem;
+}
+
+/* 输入框 */
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #d1d5db; /* Tailwind gray-300 */
+    border-radius: 6px;
+    box-sizing: border-box; /* 重要，防止padding撑大元素 */
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+    outline: none;
+    border-color: #8b5cf6; /* Tailwind violet-500 */
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.3);
+}
+
+/* 购物车 */
+#cartItems {
+    background-color: #f3e8ff; /* 淡紫色背景 */
+    padding: 1rem;
+    border-radius: 8px;
+    min-height: 80px;
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #d8b4fe; /* Tailwind purple-200 */
+}
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+/* LLM 建议区 */
+#llmSuggestion {
+    background-color: #faf5ff; /* Tailwind purple-50 */
+    border: 1px solid #e9d5ff; /* Tailwind purple-200 */
+    border-left-width: 4px;
+    border-left-color: #a855f7; /* Tailwind purple-500 */
+    padding: 1rem;
+    border-radius: 6px;
+    min-height: 100px;
+    white-space: pre-wrap; /* 保留换行和空格 */
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* 模态框基础样式 (如果不用Tailwind的模态框组件) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto; /* 10% from the top and centered */
+    padding: 25px;
+    border: 1px solid #d1d5db; /* Tailwind gray-300 */
+    width: 90%;
+    max-width: 450px; /* Max width */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.close-button {
+    color: #9ca3af; /* Tailwind gray-400 */
+    float: right;
+    font-size: 2rem;
+    line-height: 1;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #1f2937; /* Tailwind gray-800 */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 响应式设计：针对小屏幕优化 */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 15px;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    .grid.md\:grid-cols-3 { /* 覆盖Tailwind的md断点 */
+        grid-template-columns: 1fr; /* 单列布局 */
+    }
+    .md\:col-span-2 {
+        grid-column: span 1 / span 1;
+    }
+    .menu-item img {
+        height: 120px;
+    }
+}
